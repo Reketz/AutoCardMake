@@ -33,7 +33,6 @@ public class Main {
         String separator_time =  " --> ";
 
         CardMake cardMake = new CardMake(separator_time, pathVideo, pathOutput, linesFrom, linesTo, cutVideo);
-
         GeneratorCardMake.toGenerate(cardMake, 1, 353);
     }
 

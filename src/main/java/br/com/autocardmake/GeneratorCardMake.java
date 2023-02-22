@@ -15,18 +15,18 @@ import java.util.List;
 public class GeneratorCardMake {
 
     public static String SEPARATOR_TIME;
-    public static void toGenerate(CardMake cardMake, int phraseNumber, int generateTo) throws IOException {
+    public static void toGenerate(CardMake cardMake, int sceneNumber, int generateTo) throws IOException {
         SEPARATOR_TIME = cardMake.getSeparator().isEmpty() ? " --> " : cardMake.getSeparator();
-        generatorCardMake(cardMake, phraseNumber, generateTo);
+        generatorCardMake(cardMake, sceneNumber, generateTo);
     }
-    private static void generatorCardMake(CardMake cardMake, int phraseNumber, int generateTo) throws IOException {
+    private static void generatorCardMake(CardMake cardMake, int sceneNumber, int generateTo) throws IOException {
         StringBuilder content = new StringBuilder();
         cardMake.getLinesFrom().add("");
         for (int i = 0; i < cardMake.getLinesFrom().size(); i++) {
             String line = cardMake.getLinesFrom().get(i);
             int number = convertLineToNumber(line);
 
-            if (number == phraseNumber) {
+            if (number == sceneNumber) {
                 String[] time = cardMake.getLinesFrom().get(i + 1).split(cardMake.getSeparator());
 
                 float startSeconds = getSecondsAndNano(time, 0);
@@ -40,7 +40,7 @@ public class GeneratorCardMake {
                 System.out.println("Corte criado: " + nameFile);
                 content.append(createTextToFileTxt(cardMake.getLinesTo(), key, nameFile, textComplete));
 
-                phraseNumber++;
+                sceneNumber++;
             }
 
             if (number == generateTo){
